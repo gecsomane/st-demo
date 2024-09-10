@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified
+    username: postgres
+    password: password
+  flyway:
+    locations: classpath:sql
+    outOfOrder: true
+    placeholder-replacement: false
+jwt:
+  secret: 3c24894c3fa058b7196d1e96e91f05d15e0f32e724adc162892a80424868e89a
+  message: JWS token created

@@ -1,0 +1,1 @@
+insert into user_data (id, username, password, role) values (1, 'admin', 'adminpassword', 'ADMIN');
