@@ -31,7 +31,7 @@ CREATE TABLE task (
     id              SMALLINT        PRIMARY KEY,
     user_id         SMALLINT        NOT NULL,
     title           VARCHAR(50)     NOT NULL,
-    descripton      VARCHAR(100),
+    description     VARCHAR(100),
     due_date        DATE,
     status          task_status     NOT NULL,
     CONSTRAINT fk_task__user_data FOREIGN KEY (user_id) REFERENCES user_data (id)

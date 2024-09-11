@@ -62,15 +62,5 @@ public class AuthServiceImpl implements AuthService {
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
-
-        /*
-        UserData userData = findByUsernameAndPassword(userInputDTO.getUsername(), userInputDTO.getPassword());
-        if (userData == null) {
-            return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(authService.generateToken(userData), HttpStatus.OK);
-
-         */
     }
 }

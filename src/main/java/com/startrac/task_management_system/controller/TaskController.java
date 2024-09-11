@@ -1,12 +1,14 @@
 package com.startrac.task_management_system.controller;
 
 import com.startrac.task_management_system.dto.TaskDTO;
+import com.startrac.task_management_system.dto.TaskFilterDTO;
 import com.startrac.task_management_system.service.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/tasks")
@@ -37,5 +39,10 @@ public class TaskController {
     public ResponseEntity<?> delete(@PathVariable Short id) {
         taskService.delete(id);
         return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
+    @PostMapping("/search")
+    public Map<Integer, List<TaskDTO>> searchTasks(@RequestBody TaskFilterDTO taskFilterDTO) {
+        return taskService.searchTasks(taskFilterDTO);
     }
 }

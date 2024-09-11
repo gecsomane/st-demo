@@ -1,6 +1,7 @@
 package com.startrac.task_management_system.service;
 
 import com.startrac.task_management_system.dto.TaskDTO;
+import com.startrac.task_management_system.dto.TaskFilterDTO;
 import com.startrac.task_management_system.enumerated.TaskStatus;
 import com.startrac.task_management_system.enumerated.UserRole;
 import com.startrac.task_management_system.model.Task;
@@ -11,9 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,13 +37,28 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Map<Integer, List<TaskDTO>> searchTasks(TaskFilterDTO taskFilterDTO) {
+        List<Task> taskListFiltered = taskRepository.search(
+                Objects.isNull(taskFilterDTO.getTitle()) ? "" : taskFilterDTO.getTitle(),
+                Objects.isNull(taskFilterDTO.getDescription()) ? "" : taskFilterDTO.getDescription(),
+                taskFilterDTO.getStatuses(),
+                taskFilterDTO.getDueDateFrom(),
+                taskFilterDTO.getDueDateTo()
+        );
+        Map<Integer, List<TaskDTO>> resultMap = new HashMap<Integer, List<TaskDTO>>();
+        resultMap.put(taskListFiltered.size(), taskListFiltered.stream().map(this::mapEntityToDTO).collect(Collectors.toList()));
+        return resultMap;
+    }
+
+
+    @Override
     public TaskDTO create(TaskDTO taskDTO) {
         Task taskToCreate = new Task();
 
         setOwnership(taskToCreate, taskDTO);
 
         taskToCreate.setTitle(taskDTO.getTitle());
-        taskToCreate.setDescripton(taskDTO.getDescripton());
+        taskToCreate.setDescription(taskDTO.getDescripton());
         taskToCreate.setDueDate(taskDTO.getDueDate());
         taskToCreate.setStatus(Objects.nonNull(taskDTO.getStatus()) ? taskDTO.getStatus() : TaskStatus.TODO);
 
@@ -66,7 +80,7 @@ public class TaskServiceImpl implements TaskService {
         setOwnership(taskToUpdate, taskDTO);
         taskToUpdate.setStatus(taskDTO.getStatus());
         taskToUpdate.setTitle(taskDTO.getTitle());
-        taskToUpdate.setDescripton(taskDTO.getDescripton());
+        taskToUpdate.setDescription(taskDTO.getDescripton());
         taskToUpdate.setDueDate(taskDTO.getDueDate());
         return mapEntityToDTO(taskRepository.save(taskToUpdate));
     }
@@ -82,7 +96,7 @@ public class TaskServiceImpl implements TaskService {
         taskDTO.setId(task.getId());
         taskDTO.setId(task.getId());
         taskDTO.setTitle(task.getTitle());
-        taskDTO.setDescripton(task.getDescripton());
+        taskDTO.setDescripton(task.getDescription());
         taskDTO.setDueDate(task.getDueDate());
         taskDTO.setStatus(task.getStatus());
         taskDTO.setOwnerUsername(task.getUser().getUsername());

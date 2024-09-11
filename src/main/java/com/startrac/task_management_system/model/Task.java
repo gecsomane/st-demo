@@ -16,7 +16,7 @@ public class Task {
 
     private String title;
 
-    private String descripton;
+    private String description;
 
     @Column(name = "due_date")
     private LocalDate dueDate;
@@ -45,12 +45,12 @@ public class Task {
         this.title = title;
     }
 
-    public String getDescripton() {
-        return descripton;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescripton(String descripton) {
-        this.descripton = descripton;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDate getDueDate() {

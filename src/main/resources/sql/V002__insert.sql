@@ -1,1 +1,1 @@
-insert into user_data (id, username, password, role) values (1, 'admin', 'adminpassword', 'ADMIN');
+insert into user_data (id, username, password, role) values (1, 'admin', '$2a$10$Bk2om0oo8khDx3HEVjYLDO6TLmNMep97n8GTMIv47DyDFtCzy.Kky', 'ADMIN');

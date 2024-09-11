@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTcyNTk4NDA5MH0.7DxQc1LPbxdOU1kqX7sGSR1FOnw8ByYsrRxmSndRLKGIR1kF12sVcto6_PjUe4Kb",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNjAyODk0OX0.TvdljDfZnEjV9aiLvpP1gKsV97U78b04m8ldhevCDKFlL8yvUpM2w0VA_8sap-XZ",
 							"type": "string"
 						}
 					]
@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"user1pw\"\n}",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"auser1password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -109,7 +109,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"user1pw\"\n}",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"user1password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -139,7 +139,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNTk4Mzg1OH0.MVbVnhBzBdcLhaI-uL0P86M923Qd6S_-T4U6c3sleBbOgCGfXTw8N4qeel8-AzG6",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNjAyOTI5OH0._NhlBuxj_rK0D_LFVv7k8PhL_zrM91Xybc7vmOifyD-2aOsVtLOf-ryokrQIrkP_",
 							"type": "string"
 						}
 					]
@@ -148,7 +148,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"title\": \"Task title 3\",\n    \"descripton\": \"Task description 3\",\n    \"dueDate\": \"2024-09-12\",\n    \"status\": \"TODO\",\n    \"_ownerUsername\": \"user2\"\n}",
+					"raw": "{\n    \"title\": \"Task title 11\",\n    \"descripton\": \"Task description 11\",\n    \"dueDate\": \"2024-09-19\",\n    \"status\": \"IN_PROGRESS\",\n    \"_ownerUsername\": \"user2\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -233,6 +233,45 @@
 						"api",
 						"tasks",
 						"39"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNjAyOTI5OH0._NhlBuxj_rK0D_LFVv7k8PhL_zrM91Xybc7vmOifyD-2aOsVtLOf-ryokrQIrkP_",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"task\",\n    \"description\": null,\n    \"statuses\": [\"TODO\",\"IN_PROGRESS\"],\n    \"dueDateFrom\": \"2024-09-12\",\n    \"dueDateTo\": \"2024-09-19\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/tasks/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tasks",
+						"search"
 					]
 				}
 			},
